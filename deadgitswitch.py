@@ -52,11 +52,11 @@ print("")
 
 # We check that we have the minimal environment variables.
 if gh_token == "":
-    print("ERROR: You are missing the environment variable GH_TOKEN")
+    print("ERROR: You are missing the required Github Actions secret named: GH_TOKEN")
     exit(1)
 
 if days == "":
-    print("ERROR: You are missing the environment variable DAYS")
+    print("ERROR: You are missing the required Github Actions secret named: DAYS")
     exit(1)
 
 
@@ -106,7 +106,7 @@ print("Time since last commit: " + str(dif))
 
 # Warn if the switch will trigger in less than 3 days
 if timedelta(days=int(days)) - dif < timedelta(days=3):
-    actions_warn("The switch will actived in less than 3 days.")
+    actions_warn("The switch will be actived in less than 3 days.")
 
 # Check if the switch should be triggered. 
 if dif > timedelta(days=int(days)):
