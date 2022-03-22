@@ -48,14 +48,7 @@ print("                           |___/                                      ")
 print("             By NMC - github.com/ncareau/dead-git-switch              ")
 print("")
 print("")
-print("Repo:                  " + gh_repo)
-print("Dry run:               " + dry_run)
-print("Days:                  " + days) # Verify this value in dry_run mode
-print("Last run:              " + last_run) # We use UTC time to sync with github
-print("Last pushed id:        " + last_pushed_id)
-print("Last pushed date:      " + last_pushed_date)
-print("")
-print("")
+
 
 # We check that we have the minimal environment variables.
 if gh_token == "":
@@ -66,6 +59,16 @@ if days == "":
     print("ERROR: You are missing the environment variable DAYS")
     exit(1)
 
+
+# Display some variables for debugging.
+print("Repo:                  " + gh_repo)
+print("Dry run:               " + dry_run)
+print("Days:                  " + days) # Verify this value in dry_run mode
+print("Last run:              " + last_run) # We use UTC time to sync with github
+print("Last pushed id:        " + last_pushed_id)
+print("Last pushed date:      " + last_pushed_date)
+print("")
+print("")
 
 # Connection to Github API.
 # Owner and repo will make sure all actions will be done on this repository only. 
