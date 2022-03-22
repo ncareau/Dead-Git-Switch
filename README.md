@@ -1,7 +1,7 @@
 Dead Git Switch
 ===
 
-Dead man's switch using github actions scheduled daily that checks if you pushed a commit/branch on github for a configurable number of day. If the switch is triggered, the switch turns the repo public to share secret or embarassing informations. 
+Dead man's switch using github actions scheduled daily that checks if you pushed a commit/branch on github for a configurable number of day. If the switch is triggered, the switch turns the repo public to share secrets or embarassing informations. 
 
 # Disclaimer
 
