@@ -126,7 +126,7 @@ else:
 
 
 # Success - Record end of script time.
-print("SUCCESS - The script run correctly. We will record the time")
+print("SUCCESS - The script runned correctly. We will record the time")
 
 last_run_datetime = date2gh(datetime.utcnow())
 

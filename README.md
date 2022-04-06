@@ -13,9 +13,9 @@ This project requires a Github Token to operate. Make sure to take correct preca
 
 ### Step 1 : Fork this repo.
 
-> If you use the github fork button, you will not be able to make the repo private. Use this button only if you want to develop on this project
+> Attention! If you use this project fork button, you will not be able to make the repo private. Use this button only if you want to contribute on this project
 
-In order to correctly fork this repo, you will have to create a new separate repo and mirror the project to it. This is also the most secure option has only you have access/knowledge of that repo. 
+In order to correctly fork this repo, you will have to create a new separate repo and mirror the project to it. This is also the most secure option because only you have access/knowledge of that repo. 
 
 Click `+` next to your username and then: Import repository
 
