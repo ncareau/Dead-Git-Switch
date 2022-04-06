@@ -1,7 +1,7 @@
 Dead Git Switch
 ===
 
-Dead man's switch using github actions scheduled daily that checks if you pushed a commit/branch on github for a configurable number of day. If the switch is triggered, the switch turns the repo public to share secrets or embarassing informations. 
+Dead man's switch using github actions scheduled daily that checks if you pushed a commit/branch on github for a configurable number of day. If the switch is triggered, the script turns the repo public to share secrets or embarassing informations to encourage maintaining regular coding habits.
 
 # Disclaimer
 
@@ -50,11 +50,10 @@ Look for LAST_DRY_RUN in your github actions secrets to confirm that the script 
 
 Once you confirmed that the script runned once successfully, you can change `DRY_RUN` to `False` to arm the script correctly. 
 
-### Add payload
+### Step 5 : Add payload
     
 Add the information you want to make public to this repository. You can edit this readme file in order to quickly show a glance of information. Or change it completely to add your secrets. You could add emabarassing picture to encourage maintaining regular coding habits.
 
 You can link the payload ([Secret Payload](img/secret_payload.jpg)) or include it in this file :
 
 ![Luna](img/secret_payload.jpg)
-

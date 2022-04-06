@@ -26,6 +26,8 @@ jobs:
       - name: --- Dead Git Switch ---
         run: python deadgitswitch.py
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_REPOSITORY: ${{ github.repository }}
+          # Secrets/Confgiuration 
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           DRY_RUN: ${{ secrets.DRY_RUN }}
+          DAYS: ${{ secrets.DAYS }}
