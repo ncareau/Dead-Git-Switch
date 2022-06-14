@@ -65,8 +65,8 @@ if days == "":
 print("Repo:                  " + gh_repo)
 print("Dry run:               " + "Yes" if dry_run else "No")
 print("Days:                  " + days) # Verify this value in dry_run mode
-print("Last run:              " + gh2date(last_run).isoformat()) # We use UTC time to sync with github
-print("Last pushed date:      " + gh2date(last_pushed_date).isoformat())
+print("Last run:              " + gh2date(last_run).strftime("%Y-%m-%d %H:%M:%S")) # We use UTC time to sync with github
+print("Last pushed date:      " + gh2date(last_pushed_date).strftime("%Y-%m-%d %H:%M:%S"))
 print("")
 print("")
 
