@@ -1,4 +1,4 @@
 
-ghapi == 0.1.19
-python-dotenv == 0.19.*
+ghapi == 0.1.21
+python-dotenv == 0.20.*
 pynacl
