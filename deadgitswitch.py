@@ -6,10 +6,11 @@ from base64 import b64encode
 from nacl import encoding, public
 
 from ghapi.all import GhApi, date2gh, gh2date, actions_warn, actions_error
+from numpy import False_
 
 load_dotenv(override=True)
 
-# Function to encrypt variable for github secrets.
+# Function to encrypt variable for GitHub secrets.
 def encrypt(public_key: str, secret_value: str) -> str:
     """Encrypt a Unicode string using the public key."""
     public_key = public.PublicKey(public_key.encode("utf-8"), encoding.Base64Encoder())
@@ -35,8 +36,10 @@ owner = gh_repo.split(sep="/")[0]
 repo = gh_repo.split(sep="/")[1]
 
 # We make sure we are running dry unless we are ready.
-if dry_run != "False":
-    dry_run = "True"
+if dry_run in ["True", "true", True]:
+    dry_run = True
+else :
+    dry_run = False
 
 switch_trigger = False
 
@@ -52,7 +55,7 @@ print("")
 print("")
 
 
-# We check that we have the minimal environment variables.
+# We check that we have the minimal environmental variables.
 if gh_token == "":
     print("ERROR: You are missing the required Github Actions secret named: GH_TOKEN")
     exit(1)
@@ -66,7 +69,7 @@ if days == "":
 print("Repo:                  " + gh_repo)
 print("Dry run:               " + "Yes" if dry_run else "No")
 print("Days:                  " + days) # Verify this value in dry_run mode
-print("Last run:              " + (gh2date(last_run).isoformat() if last_run else "Never")) # We use UTC time to sync with github
+print("Last run:              " + (gh2date(last_run).isoformat() if last_run else "Never")) # We use UTC time to sync with GitHub
 print("Last dry run:          " + (gh2date(last_dry_run).isoformat() if last_dry_run else "Never")) 
 print("Last pushed date:      " + (gh2date(last_pushed_date).isoformat() if last_pushed_date else "Never"))
 print("")
@@ -80,7 +83,7 @@ g = GhApi(token=gh_token, owner=owner, repo=repo)
 # repo_info = g.repos.get()
 # print(repo_info.private)
 
-if gh_public_only:
+if gh_public_only in ['True', 'true', True]:
     # Get all public events.
     user_events = g.activity.list_public_events_for_user(username=owner, per_page=100)
 else:
@@ -91,7 +94,7 @@ else:
 pub_key = g.actions.get_repo_public_key()
 
 # Look for pushed commit action (PushEvent and CreateEvent)
-# We assume the that the first events we see is the latest one.
+# We assume the that the first event we see is the latest one.
 for activity in user_events:
     if activity.type == "PushEvent" or activity.type == "CreateEvent":
         last_pushed_commit = activity
@@ -110,10 +113,6 @@ dif = datetime.utcnow() - gh2date(last_pushed_commit.created_at)
 
 print("Time since last commit: " + str(dif))
 
-# Warn if the switch will trigger in less than 3 days
-if timedelta(days=int(days)) - dif < timedelta(days=3):
-    actions_warn("The switch will be actived in less than 3 days.")
-
 # Check if the switch should be triggered. 
 if dif > timedelta(days=int(days)):
 
@@ -127,13 +126,17 @@ if dif > timedelta(days=int(days)):
         print("Making repository public.")
         g.repos.update(private=False)
     else:
-        print("DryRun enabled, no change were made.")
+        print("DryRun enabled, no change was made.")
 else:
     # We are under the trigger limit
     print("Under the trigger limit")
 
+    # Warn if the switch will trigger in less than 3 days
+    if timedelta(days=int(days)) - dif < timedelta(days=3):
+        actions_warn("The switch will be activated in less than 3 days.")
+
     # Verify if we should change the repo back to private.
-    if return_private and not g.repos.get().private:
+    if return_private in ['True', 'true', True] and not g.repos.get().private:
         if dry_run is False:
             print("Returning Repository to private.")
             g.repos.update(private=True)
@@ -142,7 +145,7 @@ else:
 
 
 # Success - Record end of script time.
-print("SUCCESS - The script runned correctly. We will record the time")
+print("SUCCESS - The script ran correctly. We will record the time")
 
 last_run_datetime = date2gh(datetime.utcnow())
 
@@ -162,6 +165,7 @@ else:
     )
 
 
-# Fail github action if the switch triggered to notify the user. 
+# Fail GitHub action if the switch triggered to notify the user. 
 if switch_trigger:
-    raise SystemExit("Switch triggered ! - Returning error to notify user.")
+    actions_error("Switch triggered ! - Returning error to notify user.")
+    raise SystemExit()
