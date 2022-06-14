@@ -115,15 +115,26 @@ if dif > timedelta(days=int(days)):
 
     # Switch Triggered.
     print("Switch triggered !!")
+    switch_trigger = True
 
     if dry_run is False:
-        # Do action. In this case, make the repo public.
+        # Do action. In this case, make the repo public. 
+        # This is where you can modify to run any actions when the switch is triggered. 
+        print("Making repository public.")
         g.repos.update(private=False)
     else:
         print("DryRun enabled, no change were made.")
 else:
     # We are under the trigger limit
     print("Under the trigger limit")
+
+    # Verify if we should change the repo back to private.
+    if return_private and not g.repos.get().private:
+        if dry_run is False:
+            print("Returning Repository to private.")
+            g.repos.update(private=True)
+        else:
+            print("DryRun enabled, didn't return repository to private.")    
 
 
 # Success - Record end of script time.
