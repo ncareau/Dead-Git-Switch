@@ -26,6 +26,7 @@ days = os.getenv("DAYS")
 dry_run = os.getenv("DRY_RUN")  # Bool
 return_private = os.getenv("RETURN_PRIVATE")  # Bool
 last_run = os.getenv("LAST_RUN")
+last_dry_run = os.getenv("LAST_DRY_RUN")
 last_pushed_id = os.getenv("LAST_PUSHED_ID")
 last_pushed_date = os.getenv("LAST_PUSHED_DATE")
 
@@ -65,8 +66,9 @@ if days == "":
 print("Repo:                  " + gh_repo)
 print("Dry run:               " + "Yes" if dry_run else "No")
 print("Days:                  " + days) # Verify this value in dry_run mode
-print("Last run:              " + gh2date(last_run).strftime("%Y-%m-%d %H:%M:%S")) # We use UTC time to sync with github
-print("Last pushed date:      " + gh2date(last_pushed_date).strftime("%Y-%m-%d %H:%M:%S"))
+print("Last run:              " + gh2date(last_run).isoformat if last_run else "Never") # We use UTC time to sync with github
+print("Last dry run:          " + gh2date(last_dry_run).isoformat if last_dry_run else "Never") 
+print("Last pushed date:      " + gh2date(last_pushed_date).isoformat if last_pushed_date else "Never")
 print("")
 print("")
 
