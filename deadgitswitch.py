@@ -6,7 +6,6 @@ from base64 import b64encode
 from nacl import encoding, public
 
 from ghapi.all import GhApi, date2gh, gh2date, actions_warn, actions_error
-from numpy import False_
 
 load_dotenv(override=True)
 
