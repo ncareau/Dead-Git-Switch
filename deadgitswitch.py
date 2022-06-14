@@ -80,8 +80,12 @@ g = GhApi(token=gh_token, owner=owner, repo=repo)
 # repo_info = g.repos.get()
 # print(repo_info.private)
 
-# Get all events, private and public.
-user_events = g.activity.list_events_for_authenticated_user(username=owner, per_page=100)
+if gh_public_only:
+    # Get all public events.
+    user_events = g.activity.list_public_events_for_user(username=owner, per_page=100)
+else:
+    # Get all events, private and public.
+    user_events = g.activity.list_events_for_authenticated_user(username=owner, per_page=100)  
 
 # To encrypt secrets, we need the repo public key.
 pub_key = g.actions.get_repo_public_key()
