@@ -7,7 +7,7 @@ from nacl import encoding, public
 
 from ghapi.all import GhApi, date2gh, gh2date, actions_warn, actions_error
 
-load_dotenv()
+load_dotenv(override=True)
 
 # Function to encrypt variable for github secrets.
 def encrypt(public_key: str, secret_value: str) -> str:

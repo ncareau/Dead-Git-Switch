@@ -11,7 +11,7 @@ This project was made just for fun. I am in no way responsible for any ill-advis
 
 # How to
 
-### Step 1 : Fork this repo.
+### Step 1 : Import DeadGitSwitch in new private repo
 
 > ⚠ Important! If you use GitHub fork, you will not be able to make the repo private. Use this button only if you want to contribute on this project.
 
@@ -22,6 +22,8 @@ In GitHub, click `+` next to your username and then: `Import repository`
 ![GithubImport](img/github-import.png)
 
 Use this repo URL : `https://github.com/ncareau/dead-git-switch`
+
+Add a name and select **Private** privacy.
 
 ### Step 2 : Create Github Token
 
@@ -42,13 +44,15 @@ Add the following Github Actions Secrets location in your project `Settings` -> 
 | **GH_TOKEN**      | **Required** - Github token generated in Step 2 |
 | **DRY_RUN** | **Required** - Default to `True`. Won't commit any change until DRY_RUN is `False`. |
 
-Modify the `.env` with your preference.
+Modify the `.env` with your preference. 
 
 | Variable     | Description |
 | ----------- | ----------- |
 | **DAYS**   | **Required** - Number of days of commit inactivity until it triggers the switch. |
 | **GH_PUBLIC_ONLY**   | If the script should look in your public commits only. If false, will look for private and public commits. |
 | **RETURN_PRIVATE**   | If the script should make the project private again after a recent commit. |
+
+> Variables in `.env` takes precedence to variables in Github Actions Secrets. Comment the line in `.env` if you want to override it in Github Actions Secrets.
 
 ### Step 4 : Test 
 
