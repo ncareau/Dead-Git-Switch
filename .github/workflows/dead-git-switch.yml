@@ -27,12 +27,15 @@ jobs:
         run: python deadgitswitch.py
         env:
           GH_REPOSITORY: ${{ github.repository }}
-          # Secrets/Confgiuration 
+          # Secrets/Configuration 
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GH_PUBLIC_ONLY: ${{ secrets.GH_PUBLIC_ONLY }}
           DRY_RUN: ${{ secrets.DRY_RUN }}
+
           DAYS: ${{ secrets.DAYS }}
+          GH_PUBLIC_ONLY: ${{ secrets.GH_PUBLIC_ONLY }}
           RETURN_PRIVATE: ${{ secrets.RETURN_PRIVATE }}
+          
           LAST_RUN: ${{ secrets.LAST_RUN }}
+          LAST_DRY_RUN: ${{ secrets.LAST_DRY_RUN }}
           LAST_PUSHED_ID: ${{ secrets.LAST_PUSHED_ID }}
           LAST_PUSHED_DATE: ${{ secrets.LAST_PUSHED_DATE }}
