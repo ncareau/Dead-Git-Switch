@@ -66,7 +66,7 @@ if days == "":
 
 # Display some variables for debugging.
 print("Repo:                  " + gh_repo)
-print("Dry run:               " + "Yes" if dry_run else "No")
+print("Dry run:               " + ("Yes" if dry_run else "No"))
 print("Days:                  " + days) # Verify this value in dry_run mode
 print("Last run:              " + (gh2date(last_run).isoformat() if last_run else "Never")) # We use UTC time to sync with GitHub
 print("Last dry run:          " + (gh2date(last_dry_run).isoformat() if last_dry_run else "Never")) 
@@ -148,7 +148,7 @@ print("SUCCESS - The script ran correctly. We will record the time")
 
 last_run_datetime = date2gh(datetime.utcnow())
 
-if dry_run == "False":
+if dry_run is False:
     print("LAST_RUN : " + last_run_datetime)
     g.actions.create_or_update_repo_secret(
         secret_name="LAST_RUN",
