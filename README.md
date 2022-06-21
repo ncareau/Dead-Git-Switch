@@ -42,14 +42,14 @@ Add the following Github Actions Secrets location in your project `Settings` -> 
 | Variable     | Description |
 | ----------- | ----------- |
 | **GH_TOKEN**      | **Required** - Github token generated in Step 2 |
-| **DRY_RUN** | **Required** - Default to `True`. Won't commit any change until DRY_RUN is `False`. |
+| **DRY_RUN** | **Required** - Default to `True`. Test until you have a working script then change to `False` to arm. |
 
 Modify the `.env` with your preference. 
 
 | Variable     | Description |
 | ----------- | ----------- |
 | **DAYS**   | **Required** - Number of days of commit inactivity until it triggers the switch. |
-| **GH_PUBLIC_ONLY**   | If the script should look in your public commits only. If false, will look for private and public commits. |
+| **GH_PUBLIC_ONLY**   | If the script should look in your public commits only. If `False`, will look for private and public commits. |
 | **RETURN_PRIVATE**   | If the script should make the project private again after a recent commit. |
 
 > Variables in `.env` takes precedence to variables in Github Actions Secrets. Comment the line in `.env` if you want to override it in Github Actions Secrets.
@@ -66,6 +66,6 @@ Once you confirmed that the script ran once successfully, you can change `DRY_RU
     
 Add the information you want to make public to this repository. You can edit this readme file in order to quickly show a glance of information. Or change it completely to add your information. You could add embarrassing pictures to encourage maintaining regular coding habits.
 
-You can link the payload ([Secret Payload](img/secret_payload.jpg)) or modify this readme.md file to include files :
+You can link the payload ([Secret Payload](img/secret_payload.jpg)) or modify this readme.md file to include your files :
 
 ![Luna](img/secret_payload.jpg)
